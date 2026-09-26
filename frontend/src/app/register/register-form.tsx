@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { PasswordInput } from "@/components/password-input";
 import { register } from "./actions";
 
 const fields = [
@@ -23,8 +24,13 @@ export function RegisterForm() {
           <label htmlFor={field.name} className="mb-1 block text-sm font-medium">
             {field.label}
           </label>
-          <input id={field.name} name={field.name} type={field.type}
-                 autoComplete={field.autoComplete} className="input" />
+          {field.type === "password" ? (
+            <PasswordInput id={field.name} name={field.name}
+                           autoComplete={field.autoComplete} className="input" />
+          ) : (
+            <input id={field.name} name={field.name} type={field.type}
+                   autoComplete={field.autoComplete} className="input" />
+          )}
           {state?.errors?.[field.name]?.map((error) => (
             <p key={error} className="field-error">{error}</p>
           ))}
