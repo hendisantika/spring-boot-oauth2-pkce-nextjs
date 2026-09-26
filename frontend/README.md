@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OAuth2 PKCE Notes: Next.js frontend
 
-## Getting Started
+A Next.js 16 client for the Spring Boot OAuth2 Authorization Server. It runs the Authorization Code +
+PKCE flow on the server (Backend-for-Frontend pattern), so access tokens are never exposed to browser JavaScript.
 
-First, run the development server:
+## Setup
 
 ```bash
+cp .env.example .env.local
+# set SESSION_SECRET, e.g. openssl rand -base64 32
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The backend must be running on http://localhost:8080 (see the root README).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How it works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| File                                   | Responsibility                                                     |
+|----------------------------------------|--------------------------------------------------------------------|
+| `src/app/api/auth/login/route.ts`      | Creates `code_verifier`/`state`/`nonce`, redirects with S256 challenge |
+| `src/app/api/auth/callback/route.ts`   | Validates state, exchanges code + verifier, verifies ID token      |
+| `src/app/api/auth/logout/route.ts`     | Clears session and performs OIDC RP-initiated logout               |
+| `src/lib/session.ts`                   | Encrypted (JWE A256GCM) httpOnly session and auth transaction cookies |
+| `src/lib/api.ts`                       | Server-only API client that attaches the bearer token              |
+| `src/proxy.ts`                         | Redirects unauthenticated visitors of protected routes to login    |
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command         | Description              |
+|-----------------|--------------------------|
+| `npm run dev`   | Start development server |
+| `npm run build` | Production build         |
+| `npm run start` | Start production server  |
+| `npm run lint`  | Run ESLint               |
