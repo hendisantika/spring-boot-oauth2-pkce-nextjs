@@ -12,6 +12,24 @@ backed by **MySQL**, and a **Next.js 16** frontend acting as the public client (
 | Frontend | Next.js 16 (App Router, Server Actions, Proxy), React 19, TypeScript, Tailwind CSS 4, jose, zod, Bun |
 | Testing  | JUnit 5, MockMvc, Spring Security Test, Testcontainers (MySQL)                                |
 
+## Screenshots
+
+| Home | Register (show/hide password) |
+|------|-------------------------------|
+| ![Home](docs/screenshots/01-home.png) | ![Register](docs/screenshots/02-register.png) |
+
+| Spring Authorization Server login | My notes |
+|-----------------------------------|----------|
+| ![Authorization Server login](docs/screenshots/03-authorization-server-login.png) | ![Notes](docs/screenshots/04-notes.png) |
+
+| Edit note | Profile & access token claims |
+|-----------|-------------------------------|
+| ![Edit note](docs/screenshots/05-edit-note.png) | ![Profile](docs/screenshots/06-profile.png) |
+
+| Admin (ROLE_ADMIN only) |
+|-------------------------|
+| ![Admin](docs/screenshots/07-admin.png) |
+
 ## Architecture
 
 ```
