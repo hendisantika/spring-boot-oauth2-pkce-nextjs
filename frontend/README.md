@@ -8,8 +8,8 @@ PKCE flow on the server (Backend-for-Frontend pattern), so access tokens are nev
 ```bash
 cp .env.example .env.local
 # set SESSION_SECRET, e.g. openssl rand -base64 32
-npm install
-npm run dev
+bun install
+bun dev
 ```
 
 The backend must be running on http://localhost:8080 (see the root README).
@@ -27,9 +27,12 @@ The backend must be running on http://localhost:8080 (see the root README).
 
 ## Scripts
 
-| Command         | Description              |
-|-----------------|--------------------------|
-| `npm run dev`   | Start development server |
-| `npm run build` | Production build         |
-| `npm run start` | Start production server  |
-| `npm run lint`  | Run ESLint               |
+[Bun](https://bun.sh) is the package manager and script runner (version pinned in `packageManager`).
+
+| Command             | Description                       |
+|---------------------|-----------------------------------|
+| `bun dev`           | Start development server          |
+| `bun run build`     | Production build                  |
+| `bun run start`     | Start production server           |
+| `bun run lint`      | Run ESLint                        |
+| `bun run typecheck` | Generate route types and run tsc  |
