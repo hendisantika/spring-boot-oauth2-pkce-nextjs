@@ -9,7 +9,7 @@ backed by **MySQL**, and a **Next.js 16** frontend acting as the public client (
 |----------|-----------------------------------------------------------------------------------------------|
 | Backend  | Java 25, Spring Boot 4.1, Spring Security 7 (Authorization Server + Resource Server), JPA     |
 | Database | MySQL 8.4, Flyway migrations                                                                  |
-| Frontend | Next.js 16 (App Router, Server Actions, Proxy), React 19, TypeScript, Tailwind CSS 4, jose, zod |
+| Frontend | Next.js 16 (App Router, Server Actions, Proxy), React 19, TypeScript, Tailwind CSS 4, jose, zod, Bun |
 | Testing  | JUnit 5, MockMvc, Spring Security Test, Testcontainers (MySQL)                                |
 
 ## Architecture
@@ -47,7 +47,7 @@ The client `pkce-client` is a **public client** (`client_authentication_method=n
 
 ### Prerequisites
 
-- Java 25, Docker, Node.js ≥ 20.9
+- Java 25, Docker, [Bun](https://bun.sh) ≥ 1.3
 
 ### 1. Run the backend
 
@@ -67,8 +67,8 @@ To use your own MySQL instead, set `DB_URL`, `DB_USERNAME` and `DB_PASSWORD`, an
 ```bash
 cd frontend
 cp .env.example .env.local   # then set SESSION_SECRET (openssl rand -base64 32)
-npm install
-npm run dev
+bun install
+bun dev
 ```
 
 Open http://localhost:3000 and sign in with **admin / admin123**, or register a new account.
