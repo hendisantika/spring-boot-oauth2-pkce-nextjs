@@ -1,0 +1,76 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps)"
+    labels:
+      - dependencies
+      - backend
+    groups:
+      spring:
+        patterns:
+          - "org.springframework*"
+      testcontainers:
+        patterns:
+          - "org.testcontainers*"
+
+  - package-ecosystem: npm
+    directory: "/frontend"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
+    labels:
+      - dependencies
+      - frontend
+    groups:
+      next-react:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Asia/Jakarta
+    commit-message:
+      prefix: "ci(deps)"
+    labels:
+      - dependencies
+      - github-actions
+
+  - package-ecosystem: docker-compose
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Asia/Jakarta
+    commit-message:
+      prefix: "build(deps)"
+    labels:
+      - dependencies
+      - docker
