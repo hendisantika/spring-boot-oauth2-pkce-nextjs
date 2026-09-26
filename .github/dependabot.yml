@@ -36,12 +36,11 @@ updates:
       - dependencies
       - frontend
     ignore:
-      # typescript-eslint supports TypeScript < 6.1 only (typescript-eslint/typescript-eslint#10940)
+      # "typescript" provides the TS 6 compiler API for typescript-eslint and next build
+      # (typescript-eslint supports < 6.1, see typescript-eslint/typescript-eslint#10940).
+      # TypeScript 7 updates arrive through the "@typescript/native" alias instead.
       - dependency-name: "typescript"
         versions: [ ">=6.1.0" ]
-      # eslint-plugin-react (via eslint-config-next) supports ESLint <= 9
-      - dependency-name: "eslint"
-        update-types: [ "version-update:semver-major" ]
     groups:
       next-react:
         patterns:
