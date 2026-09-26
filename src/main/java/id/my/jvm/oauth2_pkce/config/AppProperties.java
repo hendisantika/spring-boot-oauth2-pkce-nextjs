@@ -31,7 +31,6 @@ public record AppProperties(Security security, Seed seed) {
             @DefaultValue List<String> postLogoutRedirectUris,
             @DefaultValue List<String> scopes,
             @DefaultValue("15m") Duration accessTokenTtl,
-            @DefaultValue("8h") Duration refreshTokenTtl,
             @DefaultValue("false") boolean requireConsent) {
     }
 

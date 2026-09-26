@@ -44,7 +44,6 @@ app:
         - notes.read
         - notes.write
       access-token-ttl: 15m
-      refresh-token-ttl: 8h
       require-consent: false
   seed:
     admin:
