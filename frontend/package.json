@@ -10,7 +10,7 @@
     "typecheck": "next typegen && node node_modules/@typescript/native/bin/tsc --noEmit"
   },
   "dependencies": {
-    "jose": "^6.2.12",
+    "jose": "^6.2.13",
     "next": "16.3.6",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
